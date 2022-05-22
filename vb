@@ -1001,3 +1001,12 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
 		update(input)
 	end
 end)
+
+
+
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+   Title = "Vyron Border Gui",
+   Text = "brought to u by vici8807",
+   Icon = "http://www.roblox.com/asset/?id=9405011319"
+})
