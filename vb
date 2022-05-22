@@ -63,12 +63,15 @@ local UIListLayout_6 = Instance.new("UIListLayout")
 local PlrBTN_5 = Instance.new("TextButton")
 local ArrestInfo = Instance.new("TextLabel")
 local UnArrestInfo = Instance.new("TextLabel")
+local Shade = Instance.new("ImageLabel")
+local Shade2 = Instance.new("ImageLabel")
 
 --Properties:
 
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 TopBar.Name = "TopBar"
 TopBar.Parent = ScreenGui
@@ -591,6 +594,24 @@ UIListLayout_5.Parent = ArrestScrollingFrame
 UIListLayout_5.HorizontalAlignment = Enum.HorizontalAlignment.Center
 UIListLayout_5.SortOrder = Enum.SortOrder.LayoutOrder
 
+Shade.Name = "Shade"
+Shade.Parent = TopBar
+Shade.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Shade.BackgroundTransparency = 1.000
+Shade.Position = UDim2.new(-0.180602208, 0, -0.207253888, 0)
+Shade.Size = UDim2.new(1.33444858, 0, 1.44559586, 0)
+Shade.ZIndex = 0
+Shade.Image = "http://www.roblox.com/asset/?id=9702358997"
+
+Shade2.Name = "Shade2"
+Shade2.Parent = TopBar
+Shade2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Shade2.BackgroundTransparency = 1.000
+Shade2.Position = UDim2.new(-0.180602208, 0, -0.207253888, 0)
+Shade2.Size = UDim2.new(1.33444858, 0, 1.44559586, 0)
+Shade2.ZIndex = 0
+Shade2.Image = "http://www.roblox.com/asset/?id=9702358997"
+
 
 
 
@@ -840,6 +861,14 @@ for _, v in pairs(Nav:GetChildren()) do
 				end
 			end
 		end)
+		v.MouseEnter:Connect(function()
+			v.BackgroundColor3 = Color3.fromRGB(60,60,60)
+		end)
+		v.MouseLeave:Connect(function()
+			if not BG:FindFirstChild(v.Name.."Frame").Visible then
+				v.BackgroundColor3 = Color3.fromRGB(29,29,29)
+			end
+		end)
 	end
 end
 
@@ -927,7 +956,7 @@ StartFollowing.MouseButton1Click:Connect(function()
 			FollowerBox.Text = originalTextFollower
 			FollowerBox.TextEditable = true
 			FollowerBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
-			
+
 			StartFollowing.Visible = true
 		end
 	else
@@ -1006,7 +1035,7 @@ end)
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-   Title = "Vyron Border Gui",
-   Text = "brought to u by vici8807",
-   Icon = "http://www.roblox.com/asset/?id=9405011319"
+	Title = "Vyron Border Gui",
+	Text = "brought to u by vici8807",
+	Icon = "http://www.roblox.com/asset/?id=9405011319"
 })
