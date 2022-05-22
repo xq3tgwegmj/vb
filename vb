@@ -68,6 +68,7 @@ local UnArrestInfo = Instance.new("TextLabel")
 
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
 
 TopBar.Name = "TopBar"
 TopBar.Parent = ScreenGui
