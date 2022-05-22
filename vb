@@ -133,7 +133,7 @@ MustHaveGun.BorderSizePixel = 0
 MustHaveGun.Position = UDim2.new(0.0233879797, 0, 0, 0)
 MustHaveGun.Size = UDim2.new(0.948883772, 0, 0.168461367, 0)
 MustHaveGun.Font = Enum.Font.Nunito
-MustHaveGun.Text = "<b>! MUST HAVE GUN !</b>"
+MustHaveGun.Text = "<b>[REQUIRES GUN]</b>"
 MustHaveGun.TextColor3 = Color3.fromRGB(255, 255, 255)
 MustHaveGun.TextSize = 14.000
 MustHaveGun.RichText = true
@@ -662,6 +662,15 @@ function kill(name)
 						game:GetService("ReplicatedStorage").Remotes.InflictTarget:InvokeServer(unpack(args))
 					end
 				end
+			else
+				if KillScrollingFrame:FindFirstChild(name) then
+					local plrbtn = KillScrollingFrame[name]
+					plrbtn.BorderColor3 = Color3.fromRGB(255,0,0)
+					plrbtn.Text = name.."<b><font color='rgb(255,0,0)'> - Requires gun!</font></b>"
+					wait(.5)
+					plrbtn.BorderColor3 = Color3.fromRGB(53, 53, 53)
+					plrbtn.Text = name
+				end
 			end
 		end
 	end
@@ -902,20 +911,35 @@ StartFollowing.MouseButton1Click:Connect(function()
 			local originalTextFollowing = FollowingrBox.Text
 			local originalTextFollower = FollowerBox.Text
 			if not game.Players:FindFirstChild(FollowerBox.Text) then
-				FollowerBox.Text = FollowerBox.Text.." <b>- Player not found!</b>"
+				FollowerBox.Text = FollowerBox.Text.." <b><font color='rgb(255,0,0)'>- Player not found!</font></b>"
 				FollowerBox.TextEditable = false
+				FollowerBox.BorderColor3 = Color3.fromRGB(255,0,0)
 			end
 			if not game.Players:FindFirstChild(FollowingrBox.Text) then
-				FollowingrBox.Text = FollowingrBox.Text.." <b>- Player not found!</b>"
+				FollowingrBox.Text = FollowingrBox.Text.." <b><font color='rgb(255,0,0)'>- Player not found!</font></b>"
 				FollowingrBox.TextEditable = false
+				FollowingrBox.BorderColor3 = Color3.fromRGB(255,0,0)
 			end
 			wait(1)
 			FollowingrBox.Text = originalTextFollowing
 			FollowingrBox.TextEditable = true
+			FollowingrBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
 			FollowerBox.Text = originalTextFollower
 			FollowerBox.TextEditable = true
+			FollowerBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
+			
 			StartFollowing.Visible = true
 		end
+	else
+		if FollowerBox.Text == "" then
+			FollowerBox.BorderColor3 = Color3.fromRGB(255,0,0)
+		end
+		if FollowingrBox.Text == "" then
+			FollowingrBox.BorderColor3 = Color3.fromRGB(255,0,0)
+		end
+		wait(.5)
+		FollowerBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
+		FollowingrBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
 	end
 end)
 --stop follow
