@@ -123,6 +123,7 @@ PlrBTN.Font = Enum.Font.Nunito
 PlrBTN.Text = "Username"
 PlrBTN.TextColor3 = Color3.fromRGB(200, 200, 200)
 PlrBTN.TextSize = 14.000
+PlrBTN.RichText = true
 
 MustHaveGun.Name = "MustHaveGun"
 MustHaveGun.Parent = KillFrame
@@ -174,6 +175,7 @@ PlrBTN_2.Font = Enum.Font.Nunito
 PlrBTN_2.Text = "Username"
 PlrBTN_2.TextColor3 = Color3.fromRGB(200, 200, 200)
 PlrBTN_2.TextSize = 14.000
+PlrBTN_2.RichText = true
 
 JailFrame.Name = "JailFrame"
 JailFrame.Parent = BG
@@ -213,6 +215,7 @@ PlrBTN_3.Font = Enum.Font.Nunito
 PlrBTN_3.Text = "Username"
 PlrBTN_3.TextColor3 = Color3.fromRGB(200, 200, 200)
 PlrBTN_3.TextSize = 14.000
+PlrBTN_3.RichText = true
 
 FollowFrame.Name = "FollowFrame"
 FollowFrame.Parent = BG
@@ -250,6 +253,7 @@ FollowerBox.Text = ""
 FollowerBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 FollowerBox.TextSize = 14.000
 FollowerBox.TextXAlignment = Enum.TextXAlignment.Left
+FollowerBox.RichText = true
 
 Following.Name = "Following"
 Following.Parent = FollowFrame
@@ -278,6 +282,7 @@ FollowingrBox.Text = ""
 FollowingrBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 FollowingrBox.TextSize = 14.000
 FollowingrBox.TextXAlignment = Enum.TextXAlignment.Left
+FollowingrBox.RichText = true
 
 StopFollowing.Name = "StopFollowing"
 StopFollowing.Parent = FollowFrame
@@ -504,6 +509,7 @@ PlrBTN_4.Font = Enum.Font.Nunito
 PlrBTN_4.Text = "Username"
 PlrBTN_4.TextColor3 = Color3.fromRGB(200, 200, 200)
 PlrBTN_4.TextSize = 14.000
+PlrBTN_4.RichText = true
 
 UnArrestScrollingFrame.Name = "UnarrestScrollingFrame"
 UnArrestScrollingFrame.Parent = ArrestFrame
@@ -534,6 +540,7 @@ PlrBTN_5.Font = Enum.Font.Nunito
 PlrBTN_5.Text = "Username"
 PlrBTN_5.TextColor3 = Color3.fromRGB(200, 200, 200)
 PlrBTN_5.TextSize = 14.000
+PlrBTN_5.RichText = true
 
 ArrestInfo.Name = "ArrestInfo"
 ArrestInfo.Parent = ArrestFrame
@@ -731,7 +738,7 @@ function unarrest(name)
 		game:GetService("ReplicatedStorage").CuffEvents.TieEvent:FireServer(unpack(args))
 	end
 end
-	
+
 
 --players add
 function addPlayer(name)
@@ -883,6 +890,24 @@ StartFollowing.MouseButton1Click:Connect(function()
 					v.Visible = true
 				end
 			end
+		elseif not game.Players:FindFirstChild(FollowerBox.Text) or not game.Players:FindFirstChild(FollowingrBox.Text) then
+			StartFollowing.Visible = false
+			local originalTextFollowing = FollowingrBox.Text
+			local originalTextFollower = FollowerBox.Text
+			if not game.Players:FindFirstChild(FollowerBox.Text) then
+				FollowerBox.Text = FollowerBox.Text.." <b>- Player not found!</b>"
+				FollowerBox.TextEditable = false
+			end
+			if not game.Players:FindFirstChild(FollowingrBox.Text) then
+				FollowingrBox.Text = FollowingrBox.Text.." <b>- Player not found!</b>"
+				FollowingrBox.TextEditable = false
+			end
+			wait(1)
+			FollowingrBox.Text = originalTextFollowing
+			FollowingrBox.TextEditable = true
+			FollowerBox.Text = originalTextFollower
+			FollowerBox.TextEditable = true
+			StartFollowing.Visible = true
 		end
 	end
 end)
